@@ -35,8 +35,10 @@ const typeController = (e) => {
 
   // if it is not a valid character like Control/Alt then skip displaying anything
   if (!validLetters.includes(newLetter)) {
-    return;
+    return errorCount++;
+
   }
+  console.log(errorCount);
 
   userText += newLetter;
 
@@ -82,7 +84,7 @@ const gameOver = () => {
     <h1>Finished!</h1>
     <p>You took: <span class="bold">${timeTaken}</span> seconds</p>
     <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
-    <button onclick="closeModal()">Close</button>
+    <button style="margin-top:20px" onclick="closeModal()">Close</button>
   `;
 
   addHistory(questionText, timeTaken, errorCount);
@@ -101,11 +103,8 @@ const closeModal = () => {
 
 const start = () => {
   // If already started, do not start again
-  if (startTime)
-    //{
-    return;
-  //}
-  //changed
+  if (startTime) return;
+
 
   let count = 3;
   countdownOverlay.style.display = "flex";
